@@ -20,15 +20,15 @@ function Layer() {
   // add key value pairs here
   // self's are not directly publicly accessible, only through their public method(s)
   // use self's here for protection from direct access
-  self._foo = {};  // will be set, before passing on to mapping
+  self._proxies = {};  // will be set, before passing on to mapping
 }
 
-Layer.prototype.foo = function() {
-  return self._foo;
+Layer.prototype.proxies = function() {
+  return self._proxies;
 }
 
-Layer.prototype.setfoo = function(fnOrValue) {
-  self._foo = fnOrValue;
+Layer.prototype.setproxies = function(fnOrValue) {
+  self._proxies = fnOrValue;
 }
 
 /**
@@ -36,7 +36,9 @@ Layer.prototype.setfoo = function(fnOrValue) {
  * @return {LayerBusiness}
  */
 Layer.prototype.business = function() {
-  return new LayerBusiness();
+  this._layerbusiness = new LayerBusiness();
+  this._layerbusiness.setproxies(self.proxies());
+  return this._layerbusiness;
 }
 
 Layer.prototype.data = function() {
