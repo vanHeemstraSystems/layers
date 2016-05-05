@@ -46,21 +46,22 @@ Business.prototype.execute = function() {  // a function that returns a Promise
 
   // let the layer handle the mains.main object for further processing....
 
-  console.log('layers layer business execute - resourceForUuid: ', resourceForUuid); // Works: e.g. _6e8bc430_9c3a_11d9_9669_0800200c9a66 { URI: 'urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66' }
+  console.log('layers layer business execute - self._resource: ', self._resource); // Works: e.g. _6e8bc430_9c3a_11d9_9669_0800200c9a66 { URI: 'urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66' }
 
-  var main = self.proxies().proxy().mains().main();
+  var main = self._proxies.proxy().mains().main();
   console.log('layers layer business execute - main: ', main);
-  main.setproxies(_proxies);
+  main.setproxies(self._proxies);
 
   console.log('layers layer business execute - main.proxies(): ', main.proxies());
 
-  main.setresource(self.resource()); 
+  main.setresource(self._resource); 
 
   console.log('layers layer business execute - main.resource(): ', main.resource());
   
 
   // THE NEXT STEP DEPENDS ON WHAT IS INSIDE self._instructions (e.g. start, restart, stop etc.)
-
+          var promise = self._proxies.proxy().libraries().library().promise();
+          var join = promise.join;
           // Start of the run chain
           join(main.run(), function(run) {
             console.log('layers layer business execute - run: ', run);
