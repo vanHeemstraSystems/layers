@@ -33,4 +33,16 @@ Query.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
 
+Query.prototype.resource = function() {
+  return self._resource;
+}
+
+Query.prototype.setresource = function(fnOrValue) {
+  self._resource = fnOrValue;
+}
+
+Query.prototype.execute = function() {  // a function that returns a Promise
+  // to do
+}
+
 module.exports = Query;

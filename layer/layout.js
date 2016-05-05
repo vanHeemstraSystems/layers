@@ -33,4 +33,16 @@ Layout.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
 
+Layout.prototype.resource = function() {
+  return self._resource;
+}
+
+Layout.prototype.setresource = function(fnOrValue) {
+  self._resource = fnOrValue;
+}
+
+Layout.prototype.execute = function() {  // a function that returns a Promise
+  // to do
+}
+
 module.exports = Layout;

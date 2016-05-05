@@ -33,4 +33,16 @@ Flow.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
 
+Flow.prototype.resource = function() {
+  return self._resource;
+}
+
+Flow.prototype.setresource = function(fnOrValue) {
+  self._resource = fnOrValue;
+}
+
+Flow.prototype.execute = function() {  // a function that returns a Promise
+  // to do
+}
+
 module.exports = Flow;

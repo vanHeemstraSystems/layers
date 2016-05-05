@@ -33,4 +33,16 @@ Data.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
 
+Data.prototype.resource = function() {
+  return self._resource;
+}
+
+Data.prototype.setresource = function(fnOrValue) {
+  self._resource = fnOrValue;
+}
+
+Data.prototype.execute = function() {  // a function that returns a Promise
+  // to do
+}
+
 module.exports = Data;
