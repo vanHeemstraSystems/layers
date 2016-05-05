@@ -12,7 +12,17 @@ function Business() {
   // add key value pairs here
   // self's are not directly publicly accessible, only through their public method(s)
   // use self's here for protection from direct access
-  self._proxies = {};  // will be set, before passing on to mapping
+  self._instructions = {}; // will be set, by system, before calling main
+  self._proxies = {};  // will be set, by system, before calling main
+  self._resource = {}; // will be set, by system, before calling main
+}
+
+Business.prototype.instructions = function() {
+  return self._instructions;
+}
+
+Business.prototype.setinstructions = function(fnOrValue) {
+  self._instructions = fnOrValue;
 }
 
 Business.prototype.proxies = function() {
@@ -21,6 +31,44 @@ Business.prototype.proxies = function() {
 
 Business.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
+}
+
+Business.prototype.resource = function() {
+  return self._resource;
+}
+
+Business.prototype.setresource = function(fnOrValue) {
+  self._resource = fnOrValue;
+}
+
+Business.prototype.execute = function() {  // a function that returns a Promise
+
+
+  // let the layer handle the mains.main object for further processing....
+
+  console.log('layers layer business execute - resourceForUuid: ', resourceForUuid); // Works: e.g. _6e8bc430_9c3a_11d9_9669_0800200c9a66 { URI: 'urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66' }
+
+  var main = self.proxies().proxy().mains().main();
+  console.log('layers layer business execute - main: ', main);
+  main.setproxies(_proxies);
+
+  console.log('layers layer business execute - main.proxies(): ', main.proxies());
+
+  main.setresource(self.resource()); 
+
+  console.log('layers layer business execute - main.resource(): ', main.resource());
+  
+
+  // THE NEXT STEP DEPENDS ON WHAT IS INSIDE self._instructions (e.g. start, restart, stop etc.)
+
+          // Start of the run chain
+          join(main.run(), function(run) {
+            console.log('layers layer business execute - run: ', run);
+            return(run);
+          }); // eof join main.run()
+
+  
+
 }
 
 module.exports = Business;
