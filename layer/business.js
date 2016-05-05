@@ -4,8 +4,8 @@
 var self = this; // set the context locally, for access protection
 
 /**
- * Create a new Layer that let users create sub-layer.
- * @return {Layer}
+ * Create a new Business that let users create sub-business.
+ * @return {Business}
  */
 function Business() {
   console.log('layers layer business - Business called'); 
@@ -22,3 +22,5 @@ Business.prototype.proxies = function() {
 Business.prototype.setproxies = function(fnOrValue) {
   self._proxies = fnOrValue;
 }
+
+module.exports = Business;
