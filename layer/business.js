@@ -62,25 +62,18 @@ Business.prototype.execute = function() {  // a function that returns a Promise
 
     console.log('layers layer business execute - _main.resource(): ', _main.resource());
     
+    _main.setinstructions(self._instructions); 
 
-    // THE NEXT STEP DEPENDS ON WHAT IS INSIDE self._instructions (e.g. start, restart, stop etc.)
-    //
-    //
-    //        // Start of the start chain
-    //        _join(_main.start(), function(start) {
-    //          console.log('layers layer business execute - start: ', start);
-    //          return(start);
-    //        }); // eof join main.start()
-    //
-    //        _join(_main.stop(), function(stop) {
-    //          console.log('layers layer business execute - start: ', start);
-    //          return(start);
-    //        }); // eof join main.start()
-    //
-    //
+    console.log('layers layer business execute - _main.instructions(): ', _main.instructions());
 
-    console.log('layers layer business execute - resolve(_Me): ', _Me);
-    resolve(_Me);
+    _join(_main.execute(), function(result) {
+      console.log('layers layer business execute - main result: ', result);
+
+      return(result);
+    }); // eof join main.execute()
+
+    console.log('layers layer business execute - resolve(_Me): ', _Me); // COME UP WITH SOMETHING ELSE THAN _Me
+    resolve(_Me); // COME UP WITH SOMETHING ELSE THAN _Me
 
   }) // eof promise
   .catch(function(error) {
