@@ -50,7 +50,7 @@ Business.prototype.execute = function() {  // a function that returns a Promise
 
     // let the layer handle the mains.main object for further processing....
 
-    console.log('layers layer business execute - self._resource: ', self._resource); // Works: e.g. _6e8bc430_9c3a_11d9_9669_0800200c9a66 { URI: 'urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66' }
+    // console.log('layers layer business execute - self._resource: ', self._resource); // Works: e.g. _6e8bc430_9c3a_11d9_9669_0800200c9a66 { URI: 'urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66' }
 
     var _main = self._proxies.proxy().mains().main();
     console.log('layers layer business execute - _main: ', _main);
@@ -69,10 +69,18 @@ Business.prototype.execute = function() {  // a function that returns a Promise
     _join(_main.execute(), function(result) {
       console.log('layers layer business execute - main result: ', result);
 
-      return(result);
+      _Me.result = result;
+        //return(result); // DON'T DO THIS
+
+    })
+    .catch(function(error) {
+      console.log('layers layer business execute - main.execute() error: ', error);
+    })
+    .finally(function(){
+      console.log('layers layer business execute - main.execute() finally');
     }); // eof join main.execute()
 
-    console.log('layers layer business execute - resolve(_Me): ', _Me); // COME UP WITH SOMETHING ELSE THAN _Me
+    console.log('layers layer business execute - resolve(_Me)'); // COME UP WITH SOMETHING ELSE THAN _Me
     resolve(_Me); // COME UP WITH SOMETHING ELSE THAN _Me
 
   }) // eof promise
