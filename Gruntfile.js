@@ -13,12 +13,12 @@ module.exports = function(grunt) {
       'layer.js',
       'layer/business.js',
       'layer/data.js',
-      'layer/flow.js',            
+      'layer/flow.js',
       'layer/index.js',
       'layer/layout.js',
       'layer/monitor.js',
       'layer/query.js',
-      'layer/report.js'
+      'layer/report.js',
     ],
   }; // EOF js
 
